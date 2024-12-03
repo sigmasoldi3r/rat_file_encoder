@@ -21,29 +21,29 @@ jobs:
 
       - name: Download Godot Headless
         env:
-          GODOT_VERSION: 4.0.3  # Replace with your Godot version
+          GODOT_VERSION: 4.3
         run: |
-          curl -L -o godot.zip https://downloads.tuxfamily.org/godotengine/$GODOT_VERSION/Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip
+          curl -L -o godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
           unzip godot.zip -d godot
           mv godot/* godot/
-          chmod +x godot/Godot_v${GODOT_VERSION}-stable_linux_headless.64
+          chmod +x godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
   
       - name: Download Export Templates
         run: |
-          curl -L -o export_templates.tpz https://downloads.tuxfamily.org/godotengine/$GODOT_VERSION/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+          curl -L -o export_templates.tpz https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
           mkdir -p ~/.config/godot/
           unzip export_templates.tpz -d ~/.config/godot/
   
       - name: Export Game
         env:
-          GODOT_BINARY: godot/Godot_v${GODOT_VERSION}-stable_linux_headless.64
+          GODOT_BINARY: godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
         run: |
           if [ "${{ matrix.os }}" == "linux" ]; then
             mkdir -p build/linux
-            $GODOT_BINARY --export-release "Linux/X11" build/linux/MyGame.x86_64
+            $GODOT_BINARY --export-release "Linux/X11" build/linux/RAT_Encoder.x86_64
           elif [ "${{ matrix.os }}" == "windows" ]; then
             mkdir -p build/windows
-            $GODOT_BINARY --export-release "Windows Desktop" build/windows/MyGame.exe
+            $GODOT_BINARY --export-release "Windows Desktop" build/windows/RAT_Encoder.exe
           fi
   
       - name: Upload Artifacts
