@@ -13,6 +13,8 @@ jobs:
         platform: [linux, windows]
 
     runs-on: ubuntu-latest
+    env:
+      GODOT_VERSION: 4.3
     
     steps:
       - uses: actions/checkout@v4
@@ -20,8 +22,6 @@ jobs:
         run: mkdir -p build/${{ matrix.platform }}
 
       - name: Download Godot Headless
-        env:
-          GODOT_VERSION: 4.3
         run: |
           curl -L -o godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
           unzip godot.zip -d godot
@@ -29,13 +29,13 @@ jobs:
   
       - name: Download Export Templates
         run: |
-          curl -L -o export_templates.tpz "https://objects.githubusercontent.com/github-production-release-asset-2e65be/15634981/8ae8b057-ccd5-4ad5-b422-ee8244ce79fd?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241203T203615Z&X-Amz-Expires=300&X-Amz-Signature=433f30691064f2fcc428ca99c03fc89e4d39495244daeeb1bdcd7f69a273324b&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DGodot_v4.3-stable_export_templates.tpz&response-content-type=application%2Foctet-stream"
+          curl -L -o export_templates.tpz https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
           mkdir -p ~/.config/godot/
           unzip export_templates.tpz ~/.config/godot/
   
       - name: Export Game
         env:
-          GODOT_BINARY: godot/Godot_v4.3-stable_linux.x86_64
+          GODOT_BINARY: godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
         run: |
           if [ "${{ matrix.platform }}" == "linux" ]; then
             $GODOT_BINARY --headless --export-release "Linux/X11" build/linux/RAT_Encoder.x86_64
