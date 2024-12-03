@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://ohrau8t78s5x"]
+
+[ext_resource type="Script" path="res://main_window.gd" id="1_iibnw"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iibnw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 187.0
+offset_top = 52.0
+offset_right = -206.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Drop Files Here"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_right = 7.4
+offset_bottom = 29.4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "ERROR: Drop just one file at a time please"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+position = Vector2i(126, -19)
+size = Vector2i(260, 175)
+access = 2
+filters = PackedStringArray("*.png")
+use_native_dialog = true

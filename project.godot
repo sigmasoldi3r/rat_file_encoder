@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="rat_file_encoder"
+config/version="1.0"
+config/tags=PackedStringArray("tool")
+run/main_scene="res://main_window.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/image="res://find_me.png"
+boot_splash/fullsize=false
+config/icon="res://find_me.png"
+
+[display]
+
+window/size/viewport_width=512
+window/size/viewport_height=128
+window/subwindows/embed_subwindows=false
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 0)
+2d/snap/snap_2d_transforms_to_pixel=true
