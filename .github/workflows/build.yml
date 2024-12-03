@@ -38,7 +38,7 @@ jobs:
       - name: Export Game
         run: |
           if [ "${{ matrix.platform }}" == "linux" ]; then
-            $GODOT_BINARY --headless --export-release "Linux/X11" build/linux/RAT_Encoder.x86_64
+            $GODOT_BINARY --headless --export-release "Linux" build/linux/RAT_Encoder.x86_64
           elif [ "${{ matrix.platform }}" == "windows" ]; then
             $GODOT_BINARY --headless --export-release "Windows Desktop" build/windows/RAT_Encoder.exe
           fi
