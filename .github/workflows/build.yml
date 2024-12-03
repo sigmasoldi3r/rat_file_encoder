@@ -25,7 +25,6 @@ jobs:
         run: |
           curl -L -o godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
           unzip godot.zip -d godot
-          mv godot/* godot/
           chmod +x godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
   
       - name: Download Export Templates
