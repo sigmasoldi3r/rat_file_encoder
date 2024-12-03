@@ -18,5 +18,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Prepare build dir
         run: mkdir -p build/${{ matrix.os }}
+
       - name: godot-ci
         uses: abarichello/godot-ci@4.3-stable
+        run: |
+          godot -v --headless --export "${{ matrix.os }}" ./build/${{ matrix.os }}$EXPORT_NAME
