@@ -17,6 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Prepare build dir
-        run: mkdir build/${{ matrix.os }}
+        run: mkdir -p build/${{ matrix.os }}
       - name: godot-ci
         uses: abarichello/godot-ci@4.3-stable
