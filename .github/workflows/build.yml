@@ -31,7 +31,7 @@ jobs:
         run: |
           curl -L -o export_templates.tpz https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
           mkdir -p ~/.config/godot/
-          unzip export_templates.tpz ~/.config/godot/
+          unzip export_templates.tpz -d ~/.config/godot/
   
       - name: Export Game
         env:
