@@ -38,9 +38,9 @@ jobs:
           GODOT_BINARY: godot/Godot_v4.3-stable_linux.x86_64
         run: |
           if [ "${{ matrix.os }}" == "linux" ]; then
-            $GODOT_BINARY --export-release "Linux/X11" build/linux/RAT_Encoder.x86_64
+            $GODOT_BINARY --headless --export-release "Linux/X11" build/linux/RAT_Encoder.x86_64
           elif [ "${{ matrix.os }}" == "windows" ]; then
-            $GODOT_BINARY --export-release "Windows Desktop" build/windows/RAT_Encoder.exe
+            $GODOT_BINARY --headless --export-release "Windows Desktop" build/windows/RAT_Encoder.exe
           fi
   
       - name: Upload Artifacts
