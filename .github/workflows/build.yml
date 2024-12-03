@@ -35,13 +35,11 @@ jobs:
   
       - name: Export Game
         env:
-          GODOT_BINARY: godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
+          GODOT_BINARY: godot/Godot_v4.3-stable_linux.x86_64
         run: |
           if [ "${{ matrix.os }}" == "linux" ]; then
-            mkdir -p build/linux
             $GODOT_BINARY --export-release "Linux/X11" build/linux/RAT_Encoder.x86_64
           elif [ "${{ matrix.os }}" == "windows" ]; then
-            mkdir -p build/windows
             $GODOT_BINARY --export-release "Windows Desktop" build/windows/RAT_Encoder.exe
           fi
   
