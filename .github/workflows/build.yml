@@ -1,0 +1,21 @@
+name: Build binaries
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare build dir
+        run: mkdir build/${{ matrix.os }}
+      - name: godot-ci
+        uses: abarichello/godot-ci@4.3-stable
