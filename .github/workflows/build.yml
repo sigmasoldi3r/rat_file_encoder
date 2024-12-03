@@ -19,7 +19,37 @@ jobs:
       - name: Prepare build dir
         run: mkdir -p build/${{ matrix.os }}
 
-      - name: godot-ci
-        uses: abarichello/godot-ci@4.3-stable
+      - name: Download Godot Headless
+        env:
+          GODOT_VERSION: 4.0.3  # Replace with your Godot version
         run: |
-          godot -v --headless --export "${{ matrix.os }}" ./build/${{ matrix.os }}$EXPORT_NAME
+          curl -L -o godot.zip https://downloads.tuxfamily.org/godotengine/$GODOT_VERSION/Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip
+          unzip godot.zip -d godot
+          mv godot/* godot/
+          chmod +x godot/Godot_v${GODOT_VERSION}-stable_linux_headless.64
+  
+      - name: Download Export Templates
+        run: |
+          curl -L -o export_templates.tpz https://downloads.tuxfamily.org/godotengine/$GODOT_VERSION/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+          mkdir -p ~/.config/godot/
+          unzip export_templates.tpz -d ~/.config/godot/
+  
+      - name: Export Game
+        env:
+          GODOT_BINARY: godot/Godot_v${GODOT_VERSION}-stable_linux_headless.64
+        run: |
+          if [ "${{ matrix.os }}" == "linux" ]; then
+            mkdir -p build/linux
+            $GODOT_BINARY --export-release "Linux/X11" build/linux/MyGame.x86_64
+          elif [ "${{ matrix.os }}" == "windows" ]; then
+            mkdir -p build/windows
+            $GODOT_BINARY --export-release "Windows Desktop" build/windows/MyGame.exe
+          fi
+  
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.os }}-build
+          path: |
+            build/linux/*.x86_64
+            build/windows/*.exe
