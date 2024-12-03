@@ -29,7 +29,7 @@ jobs:
   
       - name: Download Export Templates
         run: |
-          curl -L -o export_templates.tpz https://objects.githubusercontent.com/github-production-release-asset-2e65be/15634981/8ae8b057-ccd5-4ad5-b422-ee8244ce79fd?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241203T203615Z&X-Amz-Expires=300&X-Amz-Signature=433f30691064f2fcc428ca99c03fc89e4d39495244daeeb1bdcd7f69a273324b&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DGodot_v4.3-stable_export_templates.tpz&response-content-type=application%2Foctet-stream
+          curl -L -o export_templates.tpz "https://objects.githubusercontent.com/github-production-release-asset-2e65be/15634981/8ae8b057-ccd5-4ad5-b422-ee8244ce79fd?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241203T203615Z&X-Amz-Expires=300&X-Amz-Signature=433f30691064f2fcc428ca99c03fc89e4d39495244daeeb1bdcd7f69a273324b&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DGodot_v4.3-stable_export_templates.tpz&response-content-type=application%2Foctet-stream"
           mkdir -p ~/.config/godot/
           unzip export_templates.tpz ~/.config/godot/
   
