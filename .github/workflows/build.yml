@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GODOT_VERSION: 4.3
+      GODOT_BINARY: godot/Godot_v4.3-stable_linux.x86_64
     
     steps:
       - uses: actions/checkout@v4
@@ -34,8 +35,6 @@ jobs:
           unzip export_templates.tpz -d ~/.config/godot/
   
       - name: Export Game
-        env:
-          GODOT_BINARY: godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
         run: |
           if [ "${{ matrix.platform }}" == "linux" ]; then
             $GODOT_BINARY --headless --export-release "Linux/X11" build/linux/RAT_Encoder.x86_64
